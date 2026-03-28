@@ -1,7 +1,11 @@
-require("dotenv").config()
-const app = require ("./src/app")
+import dotenv from 'dotenv'
+dotenv.config()
+import {connect} from './database/database.js'
+import app from './src/config/app.js'
 
-const PORT = process.env.port || 3000;
+
+
+const PORT = process.env.PORT || 3000;
 
 
 // Async fn to connect to database
