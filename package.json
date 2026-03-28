@@ -17,5 +17,12 @@
   "bugs": {
     "url": "https://github.com/cobraxcodes/The-Bridge-Protocol/issues"
   },
-  "homepage": "https://github.com/cobraxcodes/The-Bridge-Protocol#readme"
+  "homepage": "https://github.com/cobraxcodes/The-Bridge-Protocol#readme",
+  "dependencies": {
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
 }
