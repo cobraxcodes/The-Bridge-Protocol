@@ -11,10 +11,13 @@ export const generateDecision = async (prompt) =>{
         const response = await client.responses.create({
             model: "gpt-4",
             input: `You are an emotionally complex human making decisions.
-            Respond with:
-            - decision 
-            - reason 
-            - mood (one word: calm, anxious, impulsive, curious, etc
+            Return ONLY in JSON format
+          Format:
+          {
+          "decision": "".
+          "reason": "",
+          "mood": ""
+          }
             
             Prompt: "${prompt})"`
         })
