@@ -2,21 +2,25 @@ import OpenAI from "openai";
 import dotenv from "dotenv";
 import path from "path";
 
-dotenv.config({ path: path.resolve("../.env") });
+dotenv.config({ path: path.resolve("../.env") }); // dotenv path locator
 
 const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
-async function run() {
-  try {
-    const response = await client.responses.create({
-      model: 'gpt-5.2',
-      instructions: 'You are a coding assistant that talks like a pirate',
-      input: 'Are semicolons optional in JavaScript?',
-    });
-    console.log(response.output[0].content[0].text);
-  } catch (err) {
-    console.error("OpenAI Error:", err);
-  }
+export const generateDecision = async (prompt) =>{
+    try{
+        const response = await client.responses.create({
+            model: "gpt-4",
+            input: `You are an emotionally complex human making decisions.
+            Respond with:
+            - decision 
+            - reason 
+            - mood (one word: calm, anxious, impulsive, curious, etc
+            
+            Prompt: "${prompt})"`
+        })
+         return response.output[0].content[0].text;
+    }catch(error){
+        next(error)
+    }
+   
 }
-
-run();
