@@ -6,17 +6,20 @@ dotenv.config({ path: path.resolve("../.env") }); // dotenv path locator
 
 const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
-export const generateDecision = async (prompt) =>{
+export const generateDecision = async (prompt, evolvedMood, previousMood) =>{
     try{
         const response = await client.responses.create({
             model: "gpt-4",
             input: `You are an emotionally complex human making decisions.
-            Return ONLY in JSON format
+             Your CURRENT mood is: ${evolvedMood}
+             Your PREVIOUS was: ${previousMood}
+
+            Return ONLY in JSON format, NO OTHER FORMAT ASIDE FROM JSON
           Format:
           {
           "decision": "".
           "reason": "",
-          "mood": ""
+          "mood": "${evolvedMood}"
           }
             
             Prompt: "${prompt})"`
